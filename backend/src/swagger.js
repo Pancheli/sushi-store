@@ -65,24 +65,34 @@ const options = {
                         password: "12345"
                     }
                 },
-                // Project: {
-                //     type: 'object',
-                //     required: ['name', 'kind'],
-                //     properties: {
-                //         name: {
-                //             type: 'string',
-                //             description: 'Nombre del Proyecto'
-                //         },
-                //         kind: {
-                //             type: 'string',
-                //             description: 'Si es de soporte/projecto etc.'
-                //         }
-                //     },
-                //     example: {
-                //         name: 'Soporte',
-                //         kind: 'Soporte de codigo ya creado.'
-                //     }
-                // },
+                Products: {
+                    type: 'object',
+                    required: ['name', 'price', 'description', 'image'],
+                    properties: {
+                        name: {
+                            type: 'string',
+                            description: 'Nombre del producto'
+                        },
+                        price: {
+                            type: 'numeric',
+                            description: 'Precio del producto'
+                        },
+                        description: {
+                            type: 'string',
+                            description: 'Los ingredientes del producto'
+                        },
+                        image: {
+                            type: 'string',
+                            description: 'Imágen referencial del producto'
+                        }
+                    },
+                    example: {
+                        name: 'Roll de prueba',
+                        price: '5990',
+                        description: 'ingredientes de prueba',
+                        image: 'https://cdn.pixabay.com/photo/2015/05/01/09/56/sushi-748139_1280.jpg'
+                    }
+                },
             },
             responses: {
                 400: {
@@ -91,6 +101,10 @@ const options = {
                 },
                 401: {
                     description: 'Unauthorized - incorrect API key or incorrect format',
+                    contents: 'application/json'
+                },
+                500: {
+                    description: 'Internal Server Error',
                     contents: 'application/json'
                 }
             },
@@ -106,7 +120,7 @@ const options = {
         }]
 
     },
-    apis: [ "./src/routes/users.routes.js", "./src/routes/products.routes.js"],
+    apis: [ "./src/routes/user.routes.js", "./src/routes/products.routes.js"],
 }
 
 module.exports = options

@@ -1,12 +1,14 @@
 const { Router } = require("express");
-const { methods: userControllers } = require('../controllers/users.controllers')
-const { ensureAuth } = require('../middlewares/auth');
+const {
+  methods: userControllers,
+} = require("../controllers/users.controllers");
+const { ensureAuth } = require("../middlewares/auth");
 
 const router = Router();
 
 /**
  * @swagger
- * tags: 
+ * tags:
  *  name: Users
  *  description: API endpoint to manage Users
  */
@@ -17,19 +19,19 @@ const router = Router();
  * /users:
  *  get:
  *      summary: Get list users
- *      tags: [User]
+ *      tags: [Users]
  *      responses:
  *          "200":
  *              description: User info
  *              contents:
  *                  application/json:
  *                      schema:
- *                          $ref: '#/components/sql/User'
+ *                          $ref: '#/components/schemas/User'
  *          "400":
  *              $ref: '#/components/responses/400'
  *          "500":
  *              $ref: '#/components/responses/500'
- *                  
+ *
  */
 router.get("/users", ensureAuth, userControllers.getAllUsers);
 
@@ -38,13 +40,13 @@ router.get("/users", ensureAuth, userControllers.getAllUsers);
  * /users/create-user:
  *  post:
  *     summary: Create a user
- *     tags: [User]
+ *     tags: [Users]
  *     requestBody:
  *      required: true
  *      content:
  *         application/json:
  *          schema:
- *            $ref: '#/components/sql/User'
+ *            $ref: '#/components/schemas/User'
  *     responses:
  *       "400":
  *          $ref: '#/components/responses/400'
@@ -72,6 +74,10 @@ router.post("/users/create-user", userControllers.createUser);
  *    tags: [Login]
  *    requestBody:
  *      required: true
+ *      content:
+ *         application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/Login'
  *    responses:
  *      "400":
  *        $ref: '#/components/responses/400'
@@ -81,8 +87,8 @@ router.post("/users/create-user", userControllers.createUser);
  *          description: login successful
  *          contents:
  *             application/json
- *          
+ *
  */
-router.post("/login", userControllers.validateUser)
+router.post("/login", userControllers.validateUser);
 
 module.exports = router;

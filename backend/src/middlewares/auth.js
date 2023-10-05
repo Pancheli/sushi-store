@@ -5,7 +5,7 @@ const config = require('../config');
 exports.ensureAuth = async (req, res, next) => {
     const Authorization = req.header("Authorization");
     const token = Authorization.split("Bearer ")[1]
-    if (!token) {
+    if(!token) {
         throw res.status(401).json({
             auth: false,
             message: 'No token provided'

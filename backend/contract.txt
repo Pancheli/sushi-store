@@ -1,0 +1,78 @@
+// Login // Login to get a token
+
+// POST /login
+request: {
+    payload: {
+        email: String,
+        password: String
+    },
+    response: {
+        token: String
+        user: {
+            id: Number,
+            email: String,
+        }
+        code: {
+            200: {
+                mesagge: 'Login succesfull'
+            },
+            401: {
+                message: 'Unauthorized'
+            }
+        }
+    }
+}    
+
+// Users // API to manage users endpoint
+
+// GET /users
+request: {
+
+},
+response: {
+    users: [{
+        id: Number,
+        name: String,
+        address: String,
+        phone: Numeric,
+        email: String,
+        password: String
+    }],
+    code: {
+        200: {
+            mesagge: 'user info'
+        },
+        400: {
+            mesagge: 'Missin API KEY'
+        },
+        500: {
+            mesagge: 'Internal server error'
+        }
+    }
+}
+
+
+// POST /users/create-user
+request: {
+    payload:{
+        name: String,
+        address: String,
+        phone: Numeric,
+        email: String,
+        password: String
+    },
+    response: {
+        200: {
+            mesagge: 'Created User'
+        },
+        400: {
+            mesagge: 'Bad request'
+        },
+        401: {
+            message: 'Unauthorized'
+        }
+        500: {
+            mesagge: 'Internal server error'
+        }
+    }
+}
