@@ -89,6 +89,6 @@ router.post("/users/create-user", userControllers.createUser);
  *             application/json
  *
  */
-router.post("/login", userControllers.validateUser);
+router.post("/auth/login", userControllers.validateUser);
 
 module.exports = router;

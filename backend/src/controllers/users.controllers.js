@@ -60,8 +60,7 @@ const validateUser = async (req, res) => {
     const { email, password } = req.body;
     const {
       rows: [user],
-      rowCount,
-    } = await runQuery(sql, [email]);
+      rowCount } = await runQuery(sql, [email]);
     const { password: passwordEncrypted } = user;
     const passwordIsTrue = await bcrypt.compare(password, passwordEncrypted);
     if (!passwordIsTrue || !rowCount) throw "User or password incorrect";
