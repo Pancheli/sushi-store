@@ -1,4 +1,4 @@
-const { signToken } = require('../utils/signToken')
+const { signToken } = require('../utils/signToken');
 
 const login = async (req, res, next) => {
     try {
@@ -10,9 +10,10 @@ const login = async (req, res, next) => {
 
         res.status(200).json({
             msg: 'Inicio de sesión correcto',
-            token
+            token,
         });
-    } catch (error) {
+    }
+    catch (error) {
         res.json({
             msg: error.message
         })

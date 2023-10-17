@@ -1,15 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import clientAxios from "../config/clientAxios";
+import { useAuthContext } from '../context/AuthProvider';
 
 const Login = () => {
     const navigate = useNavigate();
+
+    const { setAuth } = useAuthContext();
+
     const [ email, setEmail ] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState({
+    const [ password, setPassword ] = useState('');
+    const [ message, setMessage ] = useState({
         show: false,
         text: '',
-        color: ''
+        color: '',
     });
 
     const handleSubmit = async e => {
@@ -21,24 +25,30 @@ const Login = () => {
                 text: 'Debe completar todos los campos',
                 color: 'red'
             });
-            return;
         }
+
         try {
-            const { data } = await clientAxios.post('/auth/login', { email, password});
-            if (data.token) {
-                setMessage({
-                    show: true,
-                    text: '',
-                    color: ''
-                });
-                localStorage.setItem('token', data.token);
+            const { data } = await clientAxios.post('/auth/login', { email, password });
+
+            if( data.success ){
+                localStorage.setItem('token', JSON.stringify(data.message));
+                setAuth(data.message);
                 navigate('/');
             }
+            else{
+                setMessage({
+                    show: true,
+                    text: data.message,
+                    color: !data.success ?? 'red',
+                });
+            }
+
         } catch (error) {
-            console.log(error)
+            // Error 500 (error servidor)
+            console.log(error);
             setMessage({
                 show: true,
-                text: 'Datos inválidos',
+                text: 'Hubo un problema al iniciar sesión',
                 color: 'red'
             });
         }

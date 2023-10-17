@@ -58,15 +58,27 @@ const validateUser = async (req, res) => {
   try {
     const sql = "SELECT * FROM users WHERE email = $1";
     const { email, password } = req.body;
-    const {
-      rows: [user],
-      rowCount } = await runQuery(sql, [email]);
+    const { rows: [user], rowCount } = await runQuery(sql, [email]);
+
     const { password: passwordEncrypted } = user;
     const passwordIsTrue = await bcrypt.compare(password, passwordEncrypted);
-    if (!passwordIsTrue || !rowCount) throw "User or password incorrect";
-    const token = jwt.sign({ email }, "az_AZ");
-    res.status(200).json(token);
-  } catch (err) {
+
+    if( !passwordIsTrue || !rowCount ){
+      res.status(200).json({
+        message: 'Datos inválidos',
+        success: false,
+      });
+    }
+    else{
+      const { name, phone, email, adress } = user;
+      const token = jwt.sign({ email }, "az_AZ");
+      res.status(200).json({
+        message: {name, phone, email, adress, token},
+        success: true,
+      });
+    }
+  }
+  catch (err) {
     console.log(err.mesagge);
     res.status(err.code || 500).json(err);
   }

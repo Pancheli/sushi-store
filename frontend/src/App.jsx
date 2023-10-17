@@ -5,24 +5,15 @@ import Layout from './layout/Layout'
 import './App.css'
 
 function App() {
-  
-
   return (
-    <>
     <BrowserRouter>
-    <Layout>
-    <Routes>
-      <Route path='/' element={<Home />}/>
-      <Route path='/login' element={<Login />} />
-     
-     
-
-    </Routes>
-
-    </Layout>
-
+        <Layout>
+            <Routes>
+                <Route path='/' element={<Home />}/>
+                <Route path='/login' element={<Login />} />
+            </Routes>
+        </Layout>
     </BrowserRouter>
-    </>
   )
 }
 
