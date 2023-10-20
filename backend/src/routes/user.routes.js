@@ -57,7 +57,34 @@ router.get("/users", ensureAuth, userControllers.getAllUsers);
  *          contents:
  *             application/json
  */
-router.post("/users/create-user", userControllers.createUser);
+router.post("/users/create", userControllers.createUser);
+
+/**
+ * @swagger
+ * /users/?id=$1:
+ *  delete:
+ *     summary: Delete a user by Id
+ *     tags: [Users]
+ *     requestBody:
+ *      required: true
+ *      content:
+ *         application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/User'
+ *     responses:
+ *       "400":
+ *          $ref: '#/components/responses/400'
+ *       "401":
+ *          $ref: '#/components/responses/401'
+ *       "200":
+ *          description: Deleted user
+ *          contents:
+ *             application/json
+ */
+router.delete('/users', userControllers.deleteUserById);
+
+router.put('/users/update/:id', userControllers.updateUserById);
+
 
 /**
  * @swagger

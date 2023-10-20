@@ -67,7 +67,7 @@ const options = {
                 },
                 Products: {
                     type: 'object',
-                    required: ['name', 'price', 'description', 'image'],
+                    required: ['name', 'price', 'ingredients', 'image'],
                     properties: {
                         name: {
                             type: 'string',
@@ -77,9 +77,9 @@ const options = {
                             type: 'numeric',
                             description: 'Precio del producto'
                         },
-                        description: {
-                            type: 'string',
-                            description: 'Los ingredientes del producto'
+                        ingredients: {
+                            type: 'Array',
+                            description: 'Ingredientes de cada producto'
                         },
                         image: {
                             type: 'string',
@@ -89,7 +89,7 @@ const options = {
                     example: {
                         name: 'Roll de prueba',
                         price: '5990',
-                        description: 'ingredientes de prueba',
+                        ingredients: ["primer ingrediente", "segundo ingrediente", "tercer ingrediente"],
                         image: 'https://cdn.pixabay.com/photo/2015/05/01/09/56/sushi-748139_1280.jpg'
                     }
                 },

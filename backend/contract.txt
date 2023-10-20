@@ -76,3 +76,7 @@ request: {
         }
     }
 }
+
+// Products // API to manage products in the app
+
+// GET /products

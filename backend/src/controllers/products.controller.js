@@ -1,49 +1,79 @@
-const pool = require("../db/db");
-
+const { runQuery } = require("../db/db");
 
 const getAllProducts = async (req, res) => {
-    try {
-        const result = await pool.query("SELECT * FROM products;")
-        res.status(200).json(result.rows);
-    } catch ( error ) {
-        console.error(err.mesagge);
-        res.json({mesagge: "No se pudieron recuperar los productos"})
-    }
-}
+  try {
+    const result = await runQuery("SELECT * FROM products;");
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error(err.mesagge);
+    res.json({ mesagge: "No se pudieron recuperar los productos" });
+  }
+};
 
 const createProduct = async (req, res) => {
-    try {
-        const {name, price, description, image, quantity} = req.body;
-        const sql = "INSERT INTO products(name, price, description, image, quantity) VALUES($1, $2, $3, $4, $5) RETURNING *";
-        const result = await pool.query(sql, [name, price, description, image, quantity])
-        res.status(200).json({mensaje: `Registro creado`, result:result.rows});
-    }catch(err) {
-        console.error(err.message);
-        res.json({message: "Hemos tenido problemas con la petición"})
+  try {
+    const { name, price, quantity, ingredients, image } = req.body;
+    const sql =
+      "INSERT INTO products(name, price, quantity, ingredients, image) VALUES($1, $2, $3, $4, $5) RETURNING *";
+    const result = await runQuery(sql, [
+      name,
+      price,
+      quantity,
+      ingredients,
+      image,
+    ]);
+    res.status(200).json({ message: `Registro creado`, result: result.rows });
+  } catch (err) {
+    console.error(err.message);
+    res.json({ message: "Hemos tenido problemas con la petición" });
+  }
+};
+
+const deleteProduct = async (req, res) => {
+  const { id } = req.query;
+  try {
+    const findId = "SELECT * FROM products WHERE id = $1";
+    const values = [id];
+    const result = await runQuery(findId, values);
+    if (result.rows.length === 0) {
+      throw new Error("Cannot find the ID");
     }
-}
+    const idToDelete = "DELETE FROM products WHERE id = $1";
+    await runQuery(idToDelete, values);
+    res.status(200).json({ message: "Producto eliminado" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(404).json({ message: "Cannot delete product" });
+  }
+};
 
-const deleteProduct = async(req, res) => {
-    const { id } = req.query;
-    try {
-        const findId = "SELECT * FROM products WHERE id = $1"
-        const values = [id]
-        const result = await pool.query(findId, values)
-        if (result.rows.length === 0) {
-            throw new Error ('Cannot find the ID')
-        }
-        const idToDelete = 'DELETE FROM products WHERE id = $1'
-        await pool.query(idToDelete, values)
-        res.status(200).json({message: "Producto eliminado"});
+const updateProductById = async (req, res) => {
+  const { id } = req.params;
+  const { name, price, quantity, ingredients, image } = req.body;
 
-    } catch(err) {
-        console.error(err.message);
-        res.status(404).json({message: "Cannot delete product"});
-    }    
-}
+  try {
+    const findId = "SELECT * FROM products WHERE id = $1";
+    const values = [id];
+    const result = await runQuery(findId, values);
 
-module.exports = {
-    getAllProducts ,
-    createProduct,
-    deleteProduct
-}
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: "Product not found " });
+    }
+
+    const updateProduct =
+      "UPDATE products SET name = $1, price = $2, quantity = $3, ingredients = $4, image = $5 WHERE id = $6";
+    const updateValues = [name, price, quantity, ingredients, image, id];
+    await runQuery(updateProduct, updateValues);
+    res.status(200).json({ message: "Updated successfully" });
+  } catch (error) {
+    console.log("Error", error.message);
+    res.status(500).json({ message: "Error updating product" });
+  }
+};
+
+exports.methods = {
+  getAllProducts,
+  createProduct,
+  deleteProduct,
+  updateProductById,
+};

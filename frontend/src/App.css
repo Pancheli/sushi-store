@@ -12,7 +12,7 @@
 }
 
 main {
-  background-image: url('../public/img/fondo-main.jpeg');
+  background-image: url('../img/fondo-main.jpeg');
   /* background-repeat: no-repeat;
   background-position: center;
   background-size: cover; */
@@ -33,15 +33,15 @@ main {
 }
 
 .img-back-1 {
-  background-image: url('../public/img/slider1.jpg');
+  background-image: url('../img/slider1.jpg');
 }
 
 .img-back-2 {
-  background-image: url('../public/img/slider2.jpg');
+  background-image: url('../img/slider2.jpg');
 }
 
 .img-back-3 {
-  background-image: url('../public/img/slider3.jpg');
+  background-image: url('../img/slider3.jpg');
 }
 
 

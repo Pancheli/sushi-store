@@ -88,7 +88,7 @@ const Header = () => {
               <>
                 <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle text-bg-light"
+                    className="nav-link dropdown-toggle text-bg-light rounded"
                     href="#"
                     role="button"
                     data-bs-toggle="dropdown"
@@ -114,8 +114,8 @@ const Header = () => {
                     </li>
                   </ul>
                 </li>
-                <li>
-                <BsCart4 />
+                <li className="nav-item">
+                <BsCart4  className=" fs-3 text-white"/>
                 </li>
               </>
             )}
