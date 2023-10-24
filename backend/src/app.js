@@ -19,6 +19,6 @@ const specs = swaggerJSDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, {customSiteTitle: "Documentación API"}));
 
 
-app.use(routesUser, routerProduct);
+app.use('/api/sushi-store', routesUser, routerProduct);
 
 module.exports = app;

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthProvider";
 import { BsCart4 } from 'react-icons/bs'
+import EditProfile from "./EditProfile";
 
 const Header = () => {
   const { auth, setAuth } = useAuthContext();
@@ -102,11 +103,11 @@ const Header = () => {
                         Cuenta
                       </a>
                     </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Editar perfil
-                      </a>
-                    </li>
+                    <Link to="/edit-profile">
+                    <button className="border-0 btn" role="button">
+                      Editar Perfil
+                    </button>
+                  </Link>
                     <li>
                       <a className="dropdown-item" onClick={handleLogout} type='button'>
                         Cerrar sesión

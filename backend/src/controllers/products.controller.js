@@ -22,10 +22,10 @@ const createProduct = async (req, res) => {
       ingredients,
       image,
     ]);
-    res.status(200).json({ message: `Registro creado`, result: result.rows });
+    res.status(200).json({ message: `Created product`, result: result.rows });
   } catch (err) {
     console.error(err.message);
-    res.json({ message: "Hemos tenido problemas con la petición" });
+    res.status(500).json( err.message );
   }
 };
 
@@ -40,7 +40,7 @@ const deleteProduct = async (req, res) => {
     }
     const idToDelete = "DELETE FROM products WHERE id = $1";
     await runQuery(idToDelete, values);
-    res.status(200).json({ message: "Producto eliminado" });
+    res.status(200).json({ message: "Deleted product" });
   } catch (err) {
     console.error(err.message);
     res.status(404).json({ message: "Cannot delete product" });

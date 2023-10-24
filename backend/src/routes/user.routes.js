@@ -18,27 +18,30 @@ const router = Router();
  * @swagger
  * /users:
  *  get:
+ *      description: Return all the users in the database
  *      summary: Get list users
  *      tags: [Users]
  *      responses:
  *          "200":
- *              description: User info
+ *              description: A list of users.
  *              contents:
  *                  application/json:
  *                      schema:
- *                          $ref: '#/components/schemas/User'
+ *                          type: Array
+ *                          items: {$ref: '#/components/schemas/User'}
  *          "400":
  *              $ref: '#/components/responses/400'
  *          "500":
  *              $ref: '#/components/responses/500'
  *
  */
-router.get("/users", ensureAuth, userControllers.getAllUsers);
+router.get("/users", userControllers.getAllUsers);
 
 /**
  * @swagger
- * /users/create-user:
+ * /users/create:
  *  post:
+ *     description: Creating a new user in the database
  *     summary: Create a user
  *     tags: [Users]
  *     requestBody:
@@ -61,7 +64,7 @@ router.post("/users/create", userControllers.createUser);
 
 /**
  * @swagger
- * /users/?id=$1:
+ * /users:
  *  delete:
  *     summary: Delete a user by Id
  *     tags: [Users]
@@ -83,6 +86,33 @@ router.post("/users/create", userControllers.createUser);
  */
 router.delete('/users', userControllers.deleteUserById);
 
+/**
+ * @swagger
+ * /users/update/:id:
+ *  put:
+ *     summary: Update a user by ID
+ *     tags: [Users]
+ *     parameters:
+ *        name: id
+ *        in: path
+ *        description: ID of the user to update
+ *        required: true
+ *     requestBody:
+ *      required: true
+ *      content:
+ *         application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/User'
+ *     responses:
+ *       "400":
+ *          $ref: '#/components/responses/400'
+ *       "401":
+ *          $ref: '#/components/responses/401'
+ *       "200":
+ *          description: User Updated
+ *          contents:
+ *             application/json
+ */
 router.put('/users/update/:id', userControllers.updateUserById);
 
 
@@ -90,12 +120,12 @@ router.put('/users/update/:id', userControllers.updateUserById);
  * @swagger
  * tags:
  *   name: Login
- *   description: Inicio de sesión para obtener un token
+ *   description: Login to get a token
  */
 
 /**
  * @swagger
- * /login:
+ * /auth/login:
  *  post:
  *    summary: Login
  *    tags: [Login]

@@ -103,6 +103,10 @@ const options = {
                     description: 'Unauthorized - incorrect API key or incorrect format',
                     contents: 'application/json'
                 },
+                404: {
+                    description: 'Not Found',
+                    contents: 'application/json'
+                },
                 500: {
                     description: 'Internal Server Error',
                     contents: 'application/json'
