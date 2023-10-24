@@ -1,10 +1,10 @@
-const { Router } = require("express");
+const express = require('express')
 const {
   methods: userControllers,
 } = require("../controllers/users.controllers");
 const { ensureAuth } = require("../middlewares/auth");
 
-const router = Router();
+const router = express.Router();
 
 /**
  * @swagger
@@ -16,7 +16,7 @@ const router = Router();
 //Get All Users
 /**
  * @swagger
- * /users:
+ * /api/sushi-store/users/all-users:
  *  get:
  *      description: Return all the users in the database
  *      summary: Get list users
@@ -35,11 +35,11 @@ const router = Router();
  *              $ref: '#/components/responses/500'
  *
  */
-router.get("/users", userControllers.getAllUsers);
+router.get("/all-users", userControllers.getAllUsers);
 
 /**
  * @swagger
- * /users/create:
+ * /api/sushi-store/users/create:
  *  post:
  *     description: Creating a new user in the database
  *     summary: Create a user
@@ -60,11 +60,11 @@ router.get("/users", userControllers.getAllUsers);
  *          contents:
  *             application/json
  */
-router.post("/users/create", userControllers.createUser);
+router.post("/create", userControllers.createUser);
 
 /**
  * @swagger
- * /users:
+ * /api/sushi-store/users/delete:
  *  delete:
  *     summary: Delete a user by Id
  *     tags: [Users]
@@ -84,11 +84,11 @@ router.post("/users/create", userControllers.createUser);
  *          contents:
  *             application/json
  */
-router.delete('/users', userControllers.deleteUserById);
+router.delete('/delete', userControllers.deleteUserById);
 
 /**
  * @swagger
- * /users/update/:id:
+ * /api/sushi-store/users/update/:id:
  *  put:
  *     summary: Update a user by ID
  *     tags: [Users]
@@ -113,7 +113,7 @@ router.delete('/users', userControllers.deleteUserById);
  *          contents:
  *             application/json
  */
-router.put('/users/update/:id', userControllers.updateUserById);
+router.put('/update/:id', userControllers.updateUserById);
 
 
 /**
@@ -125,7 +125,7 @@ router.put('/users/update/:id', userControllers.updateUserById);
 
 /**
  * @swagger
- * /auth/login:
+ * /api/sushi-store/auth/login:
  *  post:
  *    summary: Login
  *    tags: [Login]

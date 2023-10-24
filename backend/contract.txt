@@ -1,3 +1,4 @@
+
 // Login // Login to get a token
 
 // POST /login
@@ -40,7 +41,7 @@ response: {
     }],
     code: {
         200: {
-            mesagge: 'user info'
+            mesagge: 'user list'
         },
         400: {
             mesagge: 'Missin API KEY'
@@ -52,7 +53,7 @@ response: {
 }
 
 
-// POST /users/create-user
+// POST /users/create
 request: {
     payload:{
         name: String,
@@ -80,3 +81,51 @@ request: {
 // Products // API to manage products in the app
 
 // GET /products
+request: {
+
+},
+response: {
+    products: [{
+        id: Number,
+        name: String,
+        price: Number,
+        quantity: Number,
+        ingredients: Array[]
+    }],
+    code: {
+        200: {
+            mesagge: 'products list'
+        },
+        400: {
+            mesagge: 'Missin API KEY'
+        },
+        500: {
+            mesagge: 'Internal server error'
+        }
+    }
+}
+
+
+// POST /products/create
+request: {
+    payload:{
+        name: String,
+        price: Number,
+        quantity: Number,
+        ingredients: Array[]
+    },
+    response: {
+        200: {
+            mesagge: 'Created Product'
+        },
+        400: {
+            mesagge: 'Bad request'
+        },
+        401: {
+            message: 'Unauthorized'
+        }
+        500: {
+            mesagge: 'Internal server error'
+        }
+    }
+}

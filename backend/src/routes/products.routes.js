@@ -1,9 +1,9 @@
-const { Router } = require("express");
+const express = require("express");
 const {
   methods: productsControllers,
 } = require("../controllers/products.controller");
 
-const router = Router();
+const router = express.Router();
 
 /**
  * @swagger
@@ -14,7 +14,7 @@ const router = Router();
 
 /**
  * @swagger
- * /products:
+ * /api/sushi-store/products/all-products:
  *  get:
  *      description: Return all the products in the database
  *      summary: Get list of the products
@@ -32,11 +32,11 @@ const router = Router();
  *              $ref: '#/components/responses/500'
  *
  */
-router.get("/products", productsControllers.getAllProducts);
+router.get("/all-products", productsControllers.getAllProducts);
 
 /**
  * @swagger
- * /products/create:
+ * /api/sushi-store/products/create:
  *  post:
  *      description: Creating a new product in the database
  *      summary: Create a product
@@ -58,12 +58,12 @@ router.get("/products", productsControllers.getAllProducts);
  *          "400":
  *              $ref: '#/components/responses/400'
  */
-router.post("/products/create", productsControllers.createProduct);
+router.post("/create", productsControllers.createProduct);
 
 
 /**
  * @swagger
- * /products/update/:id:
+ * /api/sushi-store/products/update/:id:
  *  put:
  *      description: Update a product by his ID
  *      summary: Update a product
@@ -84,12 +84,12 @@ router.post("/products/create", productsControllers.createProduct);
  *          "500":
  *              $ref: '#/components/responses/500'
  */
-router.put("/products/update/:id", productsControllers.updateProductById);
+router.put("/update/:id", productsControllers.updateProductById);
 
 
 /**
  * @swagger
- * /products:
+ * /api/sushi-store/products/delete:
  *  delete:
  *      description: Delete a product from the database
  *      summary: Delete a product
@@ -109,6 +109,6 @@ router.put("/products/update/:id", productsControllers.updateProductById);
  *              description: Cannot delete product
  *              $ref: '#/components/responses/404'
  */
-router.delete("/products", productsControllers.deleteProduct);
+router.delete("/delete", productsControllers.deleteProduct);
 
 module.exports = router;

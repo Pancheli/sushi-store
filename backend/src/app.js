@@ -18,7 +18,10 @@ const swaggerUi = require('swagger-ui-express');
 const specs = swaggerJSDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, {customSiteTitle: "Documentación API"}));
 
-
-app.use('/api/sushi-store', routesUser, routerProduct);
+// Routing
+const router = express.Router()
+app.use('/api/sushi-store', router);
+router.use('/users', routesUser);
+router.use('/products', routerProduct);
 
 module.exports = app;
