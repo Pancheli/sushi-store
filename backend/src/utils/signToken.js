@@ -4,6 +4,6 @@ dotenv.config();
 
 const secret = process.env.JWT_SECRET;
 
-export function signToken(payload) {
+module.exports = function signToken(payload) {
     return jwt.sign(payload, secret);
 }

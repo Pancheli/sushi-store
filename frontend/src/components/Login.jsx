@@ -28,7 +28,7 @@ const Login = () => {
         }
 
         try {
-            const { data } = await clientAxios.post('/auth/login', { email, password });
+            const { data } = await clientAxios.post('/users/auth/login', { email, password });
 
             if( data.success ){
                 localStorage.setItem('token', JSON.stringify(data.message));

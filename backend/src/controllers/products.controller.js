@@ -6,7 +6,7 @@ const getAllProducts = async (req, res) => {
     res.status(200).json(result.rows);
   } catch (error) {
     console.error(err.mesagge);
-    res.json({ mesagge: "No se pudieron recuperar los productos" });
+    res.json({ mesagge: "Cannon get all products" });
   }
 };
 

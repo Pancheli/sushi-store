@@ -21,6 +21,28 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const getUserById = async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const sql = 'SELECT * FROM users WHERE id = $1';
+    const { rows: users, rowCount } = await runQuery(sql, [userId]);
+
+    if ( !rowCount ) {
+      throw {
+        code: 404,
+        message: 'User not found',
+      };
+    } else {
+      res.status(200).json(users[0]);
+    }
+  } catch (error) {
+    console.log(error.mesagge);
+    res.status(error.code || 500 ).send(error);
+  }
+};
+
+
 const getUserByEmail = async (req, res) => {
   try {
     const { email } = req.user;
@@ -87,10 +109,10 @@ const updateUserById = async (req, res) => {
       return res.status(404).json({ message: 'User not found' })
     }
 
-    const updateUser = 'UPDATE users SET name = $1, address = $2, phone = $3, email = $4 WHERE id = $5'
+    const updateUser = 'UPDATE users SET name = $1, address = $2, phone = $3, email = $4 WHERE id = $5 RETURNING name, phone, email, address, id'
     const updateValues = [name, address, phone, email, id];
-    await runQuery(updateUser, updateValues);
-    res.status(200).json({ mesagge: 'User updated successfully'})
+    const response = await runQuery(updateUser, updateValues);
+    res.status(200).json({ mesagge: 'User updated successfully', response: response.rows[0]})
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Error updating user' });
@@ -115,10 +137,10 @@ const validateUser = async (req, res) => {
         success: false,
       });
     } else {
-      const { name, phone, email, adress } = user;
+      const { name, phone, email, address, id } = user;
       const token = jwt.sign({ email }, "az_AZ");
       res.status(200).json({
-        message: { name, phone, email, adress, token },
+        message: { name, phone, email, address, id, token },
         success: true,
       });
     }
@@ -135,5 +157,6 @@ exports.methods = {
   getUserByEmail,
   getAllUsers,
   deleteUserById,
-  updateUserById
+  updateUserById,
+  getUserById
 };

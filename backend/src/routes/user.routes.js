@@ -38,6 +38,29 @@ const router = express.Router();
 router.get("/all-users", userControllers.getAllUsers);
 
 /**
+* @swagger
+* /api/sushi-store/users/:id:
+*  get:
+*      description: Return the user with especified ID
+*      summary: Get a user by his ID
+*      tags: [Users]
+*      responses:
+*          "200":
+*              description: Get one user by his ID.
+*              contents:
+*                  application/json:
+*                      schema:
+*                          type: Array
+*                          items: {$ref: '#/components/schemas/User'}
+*          "400":
+*              $ref: '#/components/responses/400'
+*          "500":
+*              $ref: '#/components/responses/500'
+*
+*/
+router.get("/:id", userControllers.getUserById);
+
+/**
  * @swagger
  * /api/sushi-store/users/create:
  *  post:
@@ -125,7 +148,7 @@ router.put('/update/:id', userControllers.updateUserById);
 
 /**
  * @swagger
- * /api/sushi-store/auth/login:
+ * /api/sushi-store/users/auth/login:
  *  post:
  *    summary: Login
  *    tags: [Login]

@@ -124,7 +124,7 @@ const options = {
         }]
 
     },
-    apis: [ "./src/routes/user.routes.js", "./src/routes/products.routes.js"],
+    apis: [ "./src/routes/user.routes.js", "./src/routes/products.routes.js", "./src/routes/auth.routes.js"],
 }
 
 module.exports = options
