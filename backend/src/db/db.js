@@ -6,7 +6,7 @@ const pool = new Pool ({
     password: config.db_pass,
     database: config.db_database,
     host: config.db_host,
-    endpoint: config.db_endpoint,
+    // endpoint: config.db_endpoint,
     allowExitOnIdle: true
 })
 

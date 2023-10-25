@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthProvider";
-import { BsCart4 } from 'react-icons/bs'
-import EditProfile from "./EditProfile";
+import { BsCart4 } from 'react-icons/bs';
+
 
 const Header = () => {
   const { auth, setAuth } = useAuthContext();

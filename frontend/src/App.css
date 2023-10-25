@@ -17,9 +17,9 @@
 
 main {
   background-image: url('../img/fondo-main.jpeg');
-  /* background-repeat: repeat;
+  background-repeat: repeat;
   background-position: center;
-  background-size: cover; */
+  background-size: contain;
 
 }
 
@@ -30,8 +30,8 @@ main {
 
 .img-back {
   background-repeat: repeat;
-  /* background-position: center;
-  background-size: cover; */
+  background-position: center;
+  background-size: cover;
   height: calc(100vh - 199px);
   
 }

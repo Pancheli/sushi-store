@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
     <AuthProvider>
         <Header />
 
-        <main className="w-100 img-back text-center h-100">
+        <main className="w-100 text-center h-100">
           { children }
         </main>
 
