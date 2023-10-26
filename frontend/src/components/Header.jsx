@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <nav className="navbar navbar-expand-lg bg-black">
-      <div className="container-fluid me-5">
+      <div className="container-fluid me-5" data-bs-touch="true">
         <Link className="navbar-brand ms-2" to="/">
           <img
             src="../img/logo_yutaka.jpg"
@@ -39,6 +39,7 @@ const Header = () => {
           aria-controls="navbarNavDropdown"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          data-bs-theme="dark"
         >
           <span className="navbar-toggler-icon"></span>
         </button>

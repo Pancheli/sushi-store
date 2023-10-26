@@ -5,7 +5,7 @@ const getAllProducts = async (req, res) => {
     const result = await runQuery("SELECT * FROM products;");
     res.status(200).json(result.rows);
   } catch (error) {
-    console.error(err.mesagge);
+    console.error(error.mesagge);
     res.json({ mesagge: "Cannon get all products" });
   }
 };
