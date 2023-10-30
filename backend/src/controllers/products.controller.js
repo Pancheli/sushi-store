@@ -2,11 +2,11 @@ const { runQuery } = require("../db/db");
 
 const getAllProducts = async (req, res) => {
   try {
-    const result = await runQuery("SELECT * FROM products;");
+    const result = await runQuery("SELECT * FROM products");
     res.status(200).json(result.rows);
-  } catch (error) {
-    console.error(error.mesagge);
-    res.json({ mesagge: "Cannon get all products" });
+  }
+  catch (error) {
+    res.status(500).json({ trace: error, message: "Cannon get all products" });
   }
 };
 
