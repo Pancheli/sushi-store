@@ -14,8 +14,6 @@ const pool = new Pool({
 });
 
 exports.runQuery = async (statement, params = []) => {
-    // const client = await pool.connect();
-
     try {
         return await pool.query(statement, params);
     }
@@ -23,7 +21,4 @@ exports.runQuery = async (statement, params = []) => {
         console.log('Error in runQuery', error.message);
         throw error.message
     }
-    // finally {
-    //     client.release();
-    // }
 }
