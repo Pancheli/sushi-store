@@ -2,9 +2,9 @@
   "name": "sushi-store-api",
   "version": "1.0.0",
   "description": "Api for sushi store",
-  "main": "./src/index.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js",
+    "dev": "nodemon index.js",
     "test": "jest --forceExit"
   },
   "author": "Francisco Arce",
