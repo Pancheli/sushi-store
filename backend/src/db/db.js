@@ -6,7 +6,7 @@ const pool = new Pool({
     password: config.db_pass,
     database: config.db_database,
     host: config.db_host,
-    connectionString: config.db_endpoint,
+    connectionString: `project=${config.db_endpoint}`,
     allowExitOnIdle: true,
     ssl: 'require',
 });
@@ -14,7 +14,8 @@ const pool = new Pool({
 exports.runQuery = async (statement, params = []) => {
     try {
         return await pool.query(statement, params);
-    } catch (error) {
+    }
+    catch (error) {
         console.log('Error in runQuery', error.message);
         throw error.message
     }
