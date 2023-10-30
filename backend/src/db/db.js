@@ -1,14 +1,15 @@
 const { Pool } = require('pg')
 const config = require('../config')
 
-const pool = new Pool ({
+const pool = new Pool({
     user: config.db_user,
     password: config.db_pass,
     database: config.db_database,
     host: config.db_host,
-    // endpoint: config.db_endpoint,
-    allowExitOnIdle: true
-})
+    connectionString: config.db_endpoint,
+    allowExitOnIdle: true,
+    ssl: 'require',
+});
 
 exports.runQuery = async (statement, params = []) => {
     try {

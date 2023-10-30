@@ -5,10 +5,10 @@ const Footer = () => {
     <footer className="w-100 text-center" >
       <div className="bg-dark p-2 d-flex flex-row justify-content-between w-100 align-items-center">
         <div className='d-flex gap-3 ms-3 w-25'>
-          <a href="https://web.facebook.com/yutaka.rolls.50" target='_blank'>
+          <a href="https://web.facebook.com/yutaka.rolls.50" className="sushi-social" target='_blank'>
            <BsFacebook />
           </a>
-          <a href='https://www.instagram.com/yutakarolls/' target='_blank'>
+          <a href='https://www.instagram.com/yutakarolls/' className="sushi-social" target='_blank'>
             <BsInstagram />
           </a>
         </div>

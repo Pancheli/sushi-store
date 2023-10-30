@@ -1,13 +1,35 @@
-import { useState, useContext, createContext } from "react";
-
+import { useState, useContext, useEffect, useCallback, createContext } from "react";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-    const [ cart, setCart ] = useState({});
+    const localStorageCart = window.localStorage.getItem('cart');
+    const initialCart = localStorageCart ? JSON.parse(localStorageCart) : [];
+
+    const [ cart, setCart ] = useState(initialCart);
+
+    const checkProduct = (name) => {
+        if( cart.length ){
+            return cart.find(item => item.name === name) || false;
+        }
+        return false;
+    }
+
+    const toggleProduct = (props) => {
+        if( !checkProduct(props.name) ){
+            setCart(products => [...products, {...props, qty: 1}]);
+        }
+        else{
+            setCart(products => products.filter(products => products.name !== props.name));
+        }
+    }
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
 
     return (
-        <CartContext.Provider>
+        <CartContext.Provider value={{ cart, setCart, checkProduct, toggleProduct }}>
             { children }
         </CartContext.Provider>
     )

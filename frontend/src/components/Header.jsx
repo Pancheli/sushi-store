@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthProvider";
-import { BsCart4 } from 'react-icons/bs';
-
+import { useCartContext } from "../context/CartProvider";
+import { FiShoppingBag } from 'react-icons/fi';
 
 const Header = () => {
+  const { cart } = useCartContext();
   const { auth, setAuth } = useAuthContext();
 
   const handleLogout = () => {
@@ -22,7 +23,7 @@ const Header = () => {
     }, []);
 
   return (
-    <nav className="navbar navbar-expand-lg bg-black">
+    <header className="navbar navbar-expand-lg bg-black">
       <div className="container-fluid me-5" data-bs-touch="true">
         <Link className="navbar-brand ms-2" to="/">
           <img
@@ -43,11 +44,11 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div
+        <nav
           className="collapse navbar-collapse flex-grow-0"
           id="navbarNavDropdown"
         >
-          <ul className="navbar-nav gap-2">
+          <ul className="navbar-nav align-items-center gap-2">
             <li className="nav-item text-bg-light rounded">
               <Link to="/menu">
                 <button className="border-0 btn" role="button">
@@ -99,8 +100,8 @@ const Header = () => {
                     {auth.name}
                   </a>
                   <ul className="dropdown-menu">
-                    <li>
-                      <a className="dropdown-item" href="#">
+                    <li className="">
+                      <a className="dropdown-item menu-hover" href="#">
                         Cuenta
                       </a>
                     </li>
@@ -109,22 +110,25 @@ const Header = () => {
                       Editar Perfil
                     </button>
                   </Link>
-                    <li>
-                      <a className="dropdown-item" onClick={handleLogout} type='button'>
+                    <li className="">
+                      <a className="dropdown-item menu-hover" onClick={handleLogout} type='button'>
                         Cerrar sesión
                       </a>
                     </li>
                   </ul>
                 </li>
-                <li className="nav-item">
-                <BsCart4  className=" fs-3 text-white"/>
-                </li>
               </>
             )}
+            <li className="nav-item">
+              <Link to="/cart">
+                <FiShoppingBag  className=" fs-3 text-white"/>
+                ({cart.length})
+              </Link>
+            </li>
           </ul>
-        </div>
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 };
 

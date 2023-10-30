@@ -7,8 +7,9 @@ import Layout from './layout/Layout'
 import About from './components/About'
 import Contact from './components/Contact'
 import Register from './components/Register'
-import './App.css'
 import EditProfile from './components/EditProfile'
+import Cart from './components/Cart'
+import './App.css'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path='/contact' element={<Contact />}/>
                 <Route path='/register' element={<Register />}/>
                 <Route path='/edit-profile' element={<EditProfile />}/>
+                <Route path='/cart' element={<Cart />}/>
             </Routes>
         </Layout>
     </BrowserRouter>

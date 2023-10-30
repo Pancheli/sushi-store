@@ -20,7 +20,7 @@ main {
   background-repeat: repeat;
   background-position: center;
   background-size: contain;
-
+  min-height: calc(100vh - 205px);
 }
 
 .scroll-snap {
@@ -64,4 +64,31 @@ img {
 
 .text-small {
   font-size: .8em;
+}
+
+.menu-hover:hover {
+  color: rgb(29,119,253);
+}
+
+.sushi-social{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  background: #111;
+  transition: all .3s ease;
+}
+
+.sushi-social svg path{
+  fill: white;
+}
+
+.sushi-social:hover{
+  background: red;
+}
+
+.cpointer {
+  cursor: pointer
 }
