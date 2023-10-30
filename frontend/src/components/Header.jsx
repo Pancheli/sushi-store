@@ -57,13 +57,6 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item text-bg-light rounded">
-              <Link to="/about">
-                <button className="border-0 btn" role="button">
-                  Nosotros
-                </button>
-              </Link>
-            </li>
-            <li className="nav-item text-bg-light rounded">
               <Link to="/contact">
                 <button className="border-0 btn" role="button">
                   Contacto
