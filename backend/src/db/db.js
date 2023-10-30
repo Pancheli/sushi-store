@@ -6,17 +6,23 @@ const pool = new Pool({
     password: config.db_pass,
     database: config.db_database,
     host: config.db_host,
-    connectionString: `project=${config.db_endpoint}`,
-    allowExitOnIdle: true,
-    ssl: 'require',
+    // connectionString: `project=${config.db_endpoint}`,
+    // allowExitOnIdle: true,
+    max: 20,
+    idleTimeoutMillis: 30000
 });
 
 exports.runQuery = async (statement, params = []) => {
+    const client = await pool.connect();
+
     try {
-        return await pool.query(statement, params);
+        return await client.query(statement, params);
     }
     catch (error) {
         console.log('Error in runQuery', error.message);
         throw error.message
+    }
+    finally {
+        client.release();
     }
 }
