@@ -90,8 +90,9 @@ const Cart = () => {
                             </button>
                         </div>
                     </div>
-                :
-                null }
+                :                         
+                    <h4 className='fs-5 mt-4'>Tu carrito esta vacío 😢</h4>
+                }
             </div>
         </div>
     )

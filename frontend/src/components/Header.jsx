@@ -48,7 +48,7 @@ const Header = () => {
           className="collapse navbar-collapse flex-grow-0"
           id="navbarNavDropdown"
         >
-          <ul className="navbar-nav align-items-center gap-2">
+          <ul className="navbar-nav gap-2">
             <li className="nav-item text-bg-light rounded">
               <Link to="/menu">
                 <button className="border-0 btn" role="button">
