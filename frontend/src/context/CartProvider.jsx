@@ -15,6 +15,16 @@ export const CartProvider = ({ children }) => {
         return false;
     }
 
+    // const addProduct = (product) => {
+    //     if ( !checkProduct(product.name)) {
+    //         setCart(products => [...products, { ...product, qty: 1}])
+    //     }
+    // }
+
+    // const removeProduct = (name) => {
+    //     setCart(products => products.filter(item => item.name !== name));
+    // }
+
     const toggleProduct = (props) => {
         if( !checkProduct(props.name) ){
             setCart(products => [...products, {...props, qty: 1}]);

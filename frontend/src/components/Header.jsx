@@ -112,10 +112,10 @@ const Header = () => {
                 </li>
               </>
             )}
-            <li className="nav-item">
+            <li className="nav-item cart-icon">
               <Link to="/cart">
                 <FiShoppingBag  className=" fs-3 text-white"/>
-                ({cart.length})
+                <span className="cart-count">({cart.length})</span>
               </Link>
             </li>
           </ul>
