@@ -12,10 +12,12 @@ const Footer = () => {
             <BsInstagram />
           </a>
         </div>
-        <div className='text-white fs-6'>
+        <div className='text-white fs-6 d-flex'>
+          <div className='column'>
             <p className='m-0'>Horario de atención: Jueves & Viernes de 17:00 a 23:00 hrs.</p>
             <p className='m-0'>Sábados y Domingos de 15:00 a 23:00 hrs.</p>
-            <p className='m-0'>@2023 All rights reserved</p>
+          </div>
+          <p className='m-0'>@2023 All rights reserved</p>
         </div>
         <div className='d-flex justify-content-end'>
             <img src='../img/logo_yutaka.jpg' className='rounded'/>
