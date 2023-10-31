@@ -115,7 +115,7 @@ const Header = () => {
             <li className="nav-item cart-icon">
               <Link to="/cart">
                 <FiShoppingBag  className=" fs-3 text-white"/>
-                <span className="cart-count">({cart.length})</span>
+                <span className="cart-count">{cart.length}</span>
               </Link>
             </li>
           </ul>
