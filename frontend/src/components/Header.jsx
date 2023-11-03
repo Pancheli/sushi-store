@@ -1,29 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthProvider";
 import { useCartContext } from "../context/CartProvider";
-import { FiShoppingBag } from 'react-icons/fi';
+import { FiShoppingBag } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const { cart } = useCartContext();
   const { auth, setAuth } = useAuthContext();
 
+  
+
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setAuth({});
-  }
+  };
 
-    useEffect(() => {
-        const userToken = localStorage.getItem('token');
-        const userParsed = JSON.parse(userToken);
+  useEffect(() => {
+    const userToken = localStorage.getItem("token");
+    const userParsed = JSON.parse(userToken);
 
-        if( !('name' in auth) && userToken ){
-            setAuth(userParsed);
-        }
-    }, []);
+    if (!("name" in auth) && userToken) {
+      setAuth(userParsed);
+    }
+  }, []);
 
   return (
-    <header className="navbar navbar-expand-lg bg-black">
+    <header className="navbar navbar-expand-lg bg-black sticky-top">
       <div className="container-fluid me-5" data-bs-touch="true">
         <Link className="navbar-brand ms-2" to="/">
           <img
@@ -99,12 +102,16 @@ const Header = () => {
                       </a>
                     </li>
                     <Link to="/edit-profile">
-                    <button className="border-0 btn" role="button">
-                      Editar Perfil
-                    </button>
-                  </Link>
+                      <button className="border-0 btn" role="button">
+                        Editar Perfil
+                      </button>
+                    </Link>
                     <li className="">
-                      <a className="dropdown-item menu-hover" onClick={handleLogout} type='button'>
+                      <a
+                        className="dropdown-item menu-hover"
+                        onClick={handleLogout}
+                        type="button"
+                      >
                         Cerrar sesión
                       </a>
                     </li>
@@ -112,12 +119,14 @@ const Header = () => {
                 </li>
               </>
             )}
-            <li className="nav-item cart-icon">
-              <Link to="/cart">
-                <FiShoppingBag  className=" fs-3 text-white"/>
-                <span className="cart-count">{cart.length}</span>
-              </Link>
-            </li>
+              <li className="nav-item cart-icon">
+                <Link to="/cart">
+                  <FiShoppingBag className=" fs-3 text-white" />
+                  <motion.span
+                    
+                   className="cart-count">{cart.length}</motion.span>                    
+                </Link>
+              </li>
           </ul>
         </nav>
       </div>

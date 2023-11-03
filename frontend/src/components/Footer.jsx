@@ -12,7 +12,7 @@ const Footer = () => {
             <BsInstagram />
           </a>
         </div>
-        <div className='text-white fs-6 d-flex'>
+        <div className='text-white fs-6 d-flex justify-content-center flex-column'>
           <div className='column'>
             <p className='m-0'>Horario de atención: Jueves & Viernes de 17:00 a 23:00 hrs.</p>
             <p className='m-0'>Sábados y Domingos de 15:00 a 23:00 hrs.</p>
