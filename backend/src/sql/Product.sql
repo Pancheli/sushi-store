@@ -7,4 +7,5 @@ CREATE TABLE products (
     quantity NUMERIC(20),
     ingredients INT[],
     image VARCHAR(255),
+    category VARCHAR(25)
 );

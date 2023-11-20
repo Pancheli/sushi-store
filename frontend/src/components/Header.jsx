@@ -123,7 +123,6 @@ const Header = () => {
                 <Link to="/cart">
                   <FiShoppingBag className=" fs-3 text-white" />
                   <motion.span
-                    
                    className="cart-count">{cart.length}</motion.span>                    
                 </Link>
               </li>
