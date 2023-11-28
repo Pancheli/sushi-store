@@ -28,7 +28,7 @@ const Header = () => {
   return (
     <header className="navbar navbar-expand-lg bg-black sticky-top">
       <div className="container-fluid me-5" data-bs-touch="true">
-        <Link className="navbar-brand ms-2" to="/">
+        <Link className="navbar-brand ms-2" to="/" aria-hidden='Homepage'>
           <img
             src="../img/logo_yutaka.jpg"
             className="rounded"
