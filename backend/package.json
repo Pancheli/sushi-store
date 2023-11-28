@@ -1,6 +1,10 @@
 {
   "name": "sushi-store-api",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.16.0",
+    "npm": "9.8.1"
+  },
   "description": "Api for sushi store",
   "main": "index.js",
   "scripts": {
