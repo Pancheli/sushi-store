@@ -32,7 +32,7 @@ const Header = () => {
           <img
             src="../img/logo_yutaka.jpg"
             className="rounded"
-            style={{ width: "100px" }}
+            style={{ width: "100px", height: "100px" }}
           />
         </Link>
         <button
