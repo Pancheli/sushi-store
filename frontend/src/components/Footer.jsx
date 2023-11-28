@@ -20,7 +20,7 @@ const Footer = () => {
           <p className='m-0'>@2023 All rights reserved</p>
         </div>
         <div className='d-flex justify-content-end'>
-            <img src='../img/logo_yutaka.jpg' className='rounded'/>
+            <img src='../img/logo_yutaka.jpg' className='rounded' style={{width: '55px', height: '55px'}}/>
         </div>
       </div>
     </footer>
